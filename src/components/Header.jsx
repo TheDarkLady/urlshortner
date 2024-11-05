@@ -8,10 +8,10 @@ function Header() {
   const navigate = useNavigate();
   const user = true;
   return (
-    <nav className="py-4 flex justify-between items-center ">
+    <nav className="py-4 px-8 flex justify-between items-center ">
       <Link to={"/"}>
         <img
-          src="https://noveloffice.in/wp-content/uploads/2023/08/novel-office-logo.webp"
+          src="/logo.png"
           className="h-16"
           alt="shorten logo"
         />
