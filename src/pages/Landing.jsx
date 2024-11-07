@@ -31,11 +31,26 @@ function Landing() {
           alt="banner"
           className="w-full my-11 md:px-11"
         />
-        <Accordion type="single" collapsible>
+        <Accordion type="multiple" collapsible className="w-full md:px-11">
           <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
+            <AccordionTrigger>How does the trimmer url shortner works ?
+            </AccordionTrigger>
             <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
+              When you entera long URL, our system generates a shorter version of the URL. This shortened URL is then used to redirect the user to the original long URL.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>How does the trimmer url shortner works ?
+            </AccordionTrigger>
+            <AccordionContent>
+              When you entera long URL, our system generates a shorter version of the URL. This shortened URL is then used to redirect the user to the original long URL.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>How does the trimmer url shortner works ?
+            </AccordionTrigger>
+            <AccordionContent>
+              When you entera long URL, our system generates a shorter version of the URL. This shortened URL is then used to redirect the user to the original long URL.
             </AccordionContent>
           </AccordionItem>
         </Accordion>
