@@ -15,7 +15,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { LinkIcon, LogOut } from "lucide-react";
 function Header() {
   const navigate = useNavigate();
-  const user = true;
+  const user = false;
   return (
     <nav className="py-4 px-24 flex justify-between items-center ">
       <Link to={"/"}>

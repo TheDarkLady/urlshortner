@@ -1,6 +1,6 @@
 // Import the Button and Input components
 import { Button } from "@/components/ui/button";
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input"; // Adjusted to match default import
 import {
   Accordion,
@@ -8,19 +8,30 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { useNavigate } from "react-router-dom";
 
 function Landing() {
+  const [longUrl, setLongUrl] = useState();
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    event.preventDefault();
+    if(longUrl){
+      navigate(`/auth?createNew=${longUrl}`)
+    }
+  }
   return (
     <div className="w-full h-full bg-gray-900">
       <div className="max-w-[1200px] h-full m-auto flex flex-col items-center justify-center">
         <h2 className="my-10 sm:my-16 text-3xl sm:text-6xl lg:text-7xl text-white text-center font-extrabold">
           The only URL Shortener <br /> you will ever need
         </h2>
-        <form className="w-full flex flex-col sm:flex-row sm:h-14 md:w-2/4 items-center gap-4">
+        <form onSubmit={handleSubmit} className="w-full flex flex-col sm:flex-row sm:h-14 md:w-2/4 items-center gap-4">
           <Input
             type="url"
+            value={longUrl}
             className="h-full flex-1 py-4 px-4flex-grow"
             placeholder="Enter URL here"
+            onChange= {(e)=>setLongUrl(e.target.value)}
           />
           <Button className="mt-2 sm:mt-0" type="submit" variant="destructive">
             Shorten!
