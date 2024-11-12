@@ -35,6 +35,7 @@ function Login() {
   }, [data, error]);
   const handleLogin = async () => {
     setErrors([]);
+    // console.log("form Data", formData)
     try {
       const schema = Yup.object().shape({
         email: Yup.string().email("Invalid Email").required("Email is required"),
