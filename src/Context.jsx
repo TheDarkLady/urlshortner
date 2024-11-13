@@ -14,7 +14,7 @@ const UrlProvider = ({ children }) => {
     </UrlContext.Provider>
 }
 
-export const urlState = () => {
+export const UrlState = () => {
     return useContext(UrlContext)
 }
 
