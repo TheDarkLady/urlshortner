@@ -14,13 +14,16 @@ import Error from "./Error";
 import * as Yup from 'yup';
 import useFetch from "@/hooks/useFetch";
 import { login } from "@/db/apiauth";
+import { useNavigate, useSearchParams } from "react-router-dom";
 function Login() {
   const [errors, setErrors] = useState([])
   const [formData, setFormData] = useState({
     email: "",
     password: ""
   })
-
+  const navigate = useNavigate();
+  let [searchParams] = useSearchParams();
+  const longLink = searchParams.get("createNew");
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((prevState) => ({
@@ -30,8 +33,11 @@ function Login() {
     }))
   }
   const { data, error, loading, fn: fnLogin } = useFetch(login, formData);
-  useEffect(()=>{
-    console.log(data);
+  useEffect(() => {
+    console.log("data", data);
+    if (error === null && data) {
+      navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`)
+    }
   }, [data, error]);
   const handleLogin = async () => {
     setErrors([]);
@@ -58,16 +64,18 @@ function Login() {
       <CardHeader>
         <CardTitle>Login</CardTitle>
         <CardDescription>Login to your account if you already have one</CardDescription>
-        <Error message="Invalid email" />
+        {(errors.email || errors.password || error) && (
+          <Error message={errors.email || errors.password || "Invalid email or password"} />
+        )}
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
           <Input name="email" placeholder="Enter Email" onChange={handleInputChange} />
-          {errors.email && <Error message={errors.email} />}
+          {/* {errors.email && <Error message={errors.email} />} */}
         </div>
         <div className="space-y-1">
           <Input name="password" placeholder="Enter password" onChange={handleInputChange} />
-          {errors.email && <Error message={errors.email} />}
+          {/* {errors.password && <Error message={errors.password} />} */}
         </div>
       </CardContent>
       <CardFooter>

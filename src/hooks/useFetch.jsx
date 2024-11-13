@@ -10,7 +10,7 @@ const useFetch = (cb, options ={}) => {
         setError(null)
         try{
             const response = await cb(options, ...args);
-            console.log("cb :", response);
+            // console.log("cb :", response);
             
             setData(response)
         }
