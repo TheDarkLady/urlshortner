@@ -30,5 +30,26 @@ export async function getCurrentUser(){
 
 export async function signup({name, email, password, profile_pic}) {
     const fileName = `dp-${name.split(' ').join('-')}-${Math.random()}`
-    await supabase.storage.from('profile_pic').upload(fileName, profile_pic)
+    const {error:storageError} = await supabase.storage.from('profile_pic').upload(fileName, profile_pic)
+
+    if(storageError){
+        console.error('error during login :', storageError.message)
+        throw new Error(storageError.message)
+    }
+    const {data, error} =await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+            data: {
+                name,
+                profile_pic: `${supabase}/storage/v1/object/public/${fileName}`,
+            }
+        }
+    })
+    // console.log("Response from supabase:", data, "Error:", error);
+    if(error) {
+        console.error('error during login :', error.message)
+        throw new Error(error.message)
+    }
+    return data
 }

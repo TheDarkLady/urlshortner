@@ -11,11 +11,12 @@ import {
 import { useNavigate } from "react-router-dom";
 
 function Landing() {
-  const [longUrl, setLongUrl] = useState();
+  const [longUrl, setLongUrl] = useState("");
   const navigate = useNavigate();
   const handleSubmit = (e) => {
-    event.preventDefault();
+    e.preventDefault();
     if(longUrl){
+
       navigate(`/auth?createNew=${longUrl}`)
     }
   }
@@ -30,7 +31,7 @@ function Landing() {
             type="url"
             value={longUrl}
             className="h-full flex-1 py-4 px-4flex-grow"
-            placeholder="Enter URL here"
+            placeholder="Please copy paste the URL here"
             onChange= {(e)=>setLongUrl(e.target.value)}
           />
           <Button className="mt-2 sm:mt-0" type="submit" variant="destructive">

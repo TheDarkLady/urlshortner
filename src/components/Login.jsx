@@ -75,11 +75,11 @@ function Login() {
       </CardHeader>
       <CardContent className="space-y-2">
         <div className="space-y-1">
-          <Input name="email" placeholder="Enter Email" onChange={handleInputChange} />
+          <Input name="email"  type="email" placeholder="Enter Email" onChange={handleInputChange} />
           {/* {errors.email && <Error message={errors.email} />} */}
         </div>
         <div className="space-y-1">
-          <Input name="password" placeholder="Enter password" onChange={handleInputChange} />
+          <Input name="password" type="password" placeholder="Enter password" onChange={handleInputChange} />
           {/* {errors.password && <Error message={errors.password} />} */}
         </div>
       </CardContent>
