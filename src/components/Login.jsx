@@ -38,6 +38,8 @@ function Login() {
   useEffect(() => {
     console.log("data", data);
     if (error === null && data) {
+      console.log("data", data);
+      
       navigate(`/dashboard?${longLink ? `createNew=${longLink}` : ""}`)
       fetchUser();
     }

@@ -27,3 +27,8 @@ export async function getCurrentUser(){
     }
     return session.session?.user
 }
+
+export async function signup({name, email, password, profile_pic}) {
+    const fileName = `dp-${name.split(' ').join('-')}-${Math.random()}`
+    await supabase.storage.from('profile_pic').upload(fileName, profile_pic)
+}
