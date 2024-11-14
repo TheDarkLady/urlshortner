@@ -6,6 +6,7 @@ import Auth from './pages/Auth'
 import Redirect from './pages/Redirect'
 import AppLayout from './Layouts/AppLayout'
 import UrlProvider from './Context'
+import Requireauth from './components/Requireauth'
 const router = createBrowserRouter([
   {
     element:<AppLayout/>,
@@ -16,15 +17,24 @@ const router = createBrowserRouter([
       },
       {
         path:"/dashboard",
-        element:<Dashboard/>
+        element:(
+          <Requireauth>
+            <Dashboard/>
+          </Requireauth>
+        )
       },
       {
         path:"/link/:id",
-        element:<Link/>
+        element:(
+          <Requireauth>
+            <Link/>
+          </Requireauth>
+        )
       },
       {
         path:"/auth",
-        element:<Auth/>
+        element:
+          <Auth/>
       },
       {
         path:"/:id",
