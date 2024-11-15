@@ -25,7 +25,9 @@ export async function getCurrentUser(){
         console.error('error during login :', error.message)
         throw new Error(error.message)
     }
+    console.log("Current user from supabase:",session.session?.user);
     return session.session?.user
+    
 }
 
 export async function signup({name, email, password, profile_pic}) {
