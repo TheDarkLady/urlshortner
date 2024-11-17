@@ -10,7 +10,9 @@ import { getUrls } from '@/db/apiUrls'
 import { getClicksForUrls } from '@/db/apiClicks'
 import Linkcard from '@/components/LinkCard'
 function Dashboard() {
-  const [searchQuery, setSearchQuery] = useState();
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log("searchQuery", searchQuery);
+  
   const {user} = UrlState();
   const {loading, error, data: urls, fn:fnUrls} = useFetch(getUrls, user?.id)
   console.log("Urls", urls);
@@ -23,8 +25,8 @@ function Dashboard() {
     if (urls?.length){
       fnClicks()
     }
-  },[])
-  const filteredUrls = urls?.filter((url) => url.title.includes(searchQuery))
+  },[urls?.length])
+  const filteredUrls = urls?.filter((url) => url.title.toLowerCase().includes(searchQuery.toLocaleLowerCase()))
   console.log("filteredUrls", filteredUrls);
   
   return (
@@ -60,10 +62,10 @@ function Dashboard() {
       </div>
       {error && <Error message={error.message}/>}
 
-      {(urls || []).map((url, i) => {
+      {(filteredUrls || []).map((url, i) => {
         console.log("raj", url);
         
-        return <Linkcard key={i} url={url} fetchUrl={fnUrls} />;
+        return <Linkcard key={i} url={url} fetchUrls={fnUrls} />;
       })}
     </div>
   )

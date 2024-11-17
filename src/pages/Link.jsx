@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Link() {
+function Links() {
   return (
     <div>
       <h1>Link</h1>
@@ -8,4 +8,4 @@ function Link() {
   )
 }
 
-export default Link
+export default Links
