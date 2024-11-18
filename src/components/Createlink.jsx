@@ -1,5 +1,5 @@
 import { UrlState } from '@/Context'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
     Dialog,
@@ -21,6 +21,7 @@ import { QRCode } from 'react-qrcode-logo';
 const Createlink = () => {
     const { user } = UrlState();
     const navigate = useNavigate();
+    const ref = useRef
     let [searchParams, setSearchParams] = useSearchParams();
     const longLink = searchParams.get("createNew");
     const [formValues, setFormValues] = useState({
