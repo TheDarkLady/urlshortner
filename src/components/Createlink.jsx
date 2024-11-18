@@ -70,8 +70,8 @@ const Createlink = () => {
     }
     return (
             <Dialog defaultOpen={longLink} onOpenChange={(res)=> {if(!res) setSearchParams({})}}>
-                <DialogTrigger>
-                    <Button variant="destructive" >Create New Link</Button>
+                <DialogTrigger > 
+                    <Button variant="destructive">Create New Link</Button>
                 </DialogTrigger>
                 <DialogContent className="sm:max-w-md" >
                     <DialogHeader>
