@@ -5,9 +5,9 @@ import { Copy, Delete, Download, Trash } from 'lucide-react'
 import useFetch from '@/hooks/useFetch'
 import { deleteUrl } from '@/db/apiUrls'
 import { BeatLoader } from 'react-spinners'
-
 const Linkcard = ({url, fetchUrls}) => {
   console.log("fetch Url", fetchUrls);
+  console.log(" Link card url", url);
   
   const downloadImage = () => {
     
@@ -28,7 +28,9 @@ const Linkcard = ({url, fetchUrls}) => {
   return (
 
     <div className='flex flex-col md:flex-row gap-5 border p-4 bg-grey-900 rounded-lg mt-10'>
-        {console.log("Image", url?.qr)}
+        {console.log("Image url", url?.qr)}
+        {console.log("Complete url object:", url)}
+
       <img src={url?.qr} alt="qr code" className='h-32 object-contain ring ring-blue-500 self-start'/>
       <Link to={`/link/${url?.id}`} className='flex flex-col flex-1'>
       <span className='text-3xl  font-bold hover:underline cursor-pointer'>{url?.title}</span>

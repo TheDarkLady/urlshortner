@@ -9,7 +9,6 @@ import { UrlState } from '@/Context'
 import { getUrls } from '@/db/apiUrls'
 import { getClicksForUrls } from '@/db/apiClicks'
 import Linkcard from '@/components/LinkCard'
-import Createlink from '@/components/Createlink'
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   console.log("searchQuery", searchQuery);
@@ -55,8 +54,7 @@ function Dashboard() {
       </div >
       <div className='flex justify-between gap-4 my-10'>
         <h1 className='text-3xl font-extrabold'>My Links</h1>
-        {/* <Button className="w-">Create Link</Button> */}
-        <Createlink />
+        <Button className="w-">Create Link</Button>
       </div>
       <div className='relative overflow-x-auto'>
         <Input type="text" placeholder="Filter for links..." value={searchQuery} onChange={e=> setSearchQuery(e.target.value)}/>
@@ -65,7 +63,7 @@ function Dashboard() {
       {error && <Error message={error.message}/>}
 
       {(filteredUrls || []).map((url, i) => {
-        console.log("raj", url);
+        console.log("chaithu", url);
         
         return <Linkcard key={i} url={url} fetchUrls={fnUrls} />;
       })}
