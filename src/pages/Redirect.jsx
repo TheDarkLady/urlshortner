@@ -1,4 +1,5 @@
-import { getLongUrl, storeClicks } from '@/db/apiUrls';
+import { getLongUrl } from '@/db/apiUrls';
+import { storeClicks } from '@/db/apiClicks';
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '@/hooks/useFetch';
@@ -12,7 +13,7 @@ const Redirect = () => {
   });
 
   useEffect(() => {
-    fn()
+    fn() 
   }, [])
 
   useEffect(() => {
@@ -29,11 +30,7 @@ const Redirect = () => {
       </>
     )
   }
-  return (
-    <div>
-      
-    </div>
-  )
+  return null;
 }
 
 export default Redirect

@@ -61,7 +61,8 @@ export async function createUrl({ title, long_url, custom_url, user_id }, qrCode
 
 export async function getLongUrl(id) {
     // console.log("url_id", url_id);
-    console.log("Delete url");
+    console.log("Calling getLongUrl with ID:", id);
+
 
     const { data, error } = await supabase.from("urls").select("id, original_url").or(`short_url.eq.${id}, custom_url.eq.${id}`).single();
     if (error) {
@@ -74,28 +75,19 @@ export async function getLongUrl(id) {
 
 }
 
-const parser = new UAParser();
 
 
-export const storeClicks = async ({id, original_url}) =>{
-    try{
-        const res = parser.getResult();
-        const device = res.type || "desktop";
-        const response = await fetch("https://ipapi.co/json/");
-        const {city, country_name : country} = await response.json();
-        
-        await supabase.from("clicks").insert([
-            { 
-                url_id : id,
-                city: city,
-                device : device,
-                country : country,
-                
-            }
-        ]);
-        window.location.href = original_url;
+export async function getUrl({id, user_id}) {
+
+    const { data, error } = await supabase.from("urls").select("*").eq("id", id).eq("user_id", user_id).single();
+    if (error) {
+        console.error('error during getting  urls :', error.message)
+        throw new Error("Short url not found")
     }
-    catch(error){
-        console.error("Error recording Clicks", error);
-    }
+    console.log("getUrl data", data);
+
+    return data;
+
 }
+
+

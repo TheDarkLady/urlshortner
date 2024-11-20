@@ -48,7 +48,7 @@ function Dashboard() {
           <CardTitle>Total Clicks</CardTitle>
         </CardHeader>
         <CardContent>
-          <p>{clicks?.length===0 ? 0 : length}
+          <p>{clicks?.length}
           </p>
         </CardContent>
       </Card>
